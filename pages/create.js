@@ -105,7 +105,7 @@ function CreateNewFriend() {
             required: "This age field is required.",
           })}
         />
-        <select {...register("gender")}>
+        <select className="border min-h-[50px] px-6" {...register("gender")}>
           <option selected value="male">
             male
           </option>

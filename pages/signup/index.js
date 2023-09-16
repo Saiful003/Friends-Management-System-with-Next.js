@@ -42,7 +42,7 @@ function SignUp() {
     } catch (err) {
       setLoading(false);
       setOtpPreview(false);
-      setError(err.response.data.message);
+      setError(err.response?.data?.message);
     }
   };
 

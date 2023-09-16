@@ -9,7 +9,7 @@ function IconButton({ icon, isRightIcon, text, deleteFlavour, onClick }) {
     <a
       onClick={onClick}
       className={classNames(
-        "w-max flex select-none items-center gap-2 px-4 py-2 rounded-md cursor-pointer",
+        "w-max border flex select-none items-center gap-2 px-4 py-2 rounded-md cursor-pointer",
         { "flex-row-reverse": isRightIcon },
         { "bg-red-100 text-red-600 hover:bg-red-200": deleteFlavour },
         { " hover:bg-gray-200": !deleteFlavour },

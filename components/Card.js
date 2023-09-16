@@ -20,10 +20,9 @@ function Card({
   const { isLightTheme } = useTheme();
 
   return (
-    <div>
-      <div className="relative w-full h-[200px] overflow-hidden">
+    <div className="border rounded-md">
+      <div className="relative w-full h-[250px] overflow-hidden">
         <Image
-          className="rounded-md"
           src={image.url}
           alt="friend-image"
           layout="fill"
@@ -31,7 +30,7 @@ function Card({
           priority
         />
       </div>
-      <div className="p-3">
+      <div className="p-5">
         <div className="flex flex-col gap-1">
           <h2
             className={`text-xl font-medium mb-2 pb-2 border-b border-b-emerald-300  ${

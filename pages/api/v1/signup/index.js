@@ -8,6 +8,8 @@ import { sendOtpViaMail } from "../../../../lib/sendOtpMail";
 export default async function handler(req, res) {
   const { method, body } = req;
 
+  console.log(req);
+
   // connect to database
   await dbConnect();
 

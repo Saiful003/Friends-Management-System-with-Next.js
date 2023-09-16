@@ -17,12 +17,12 @@ const Input = forwardRef(
 
     return (
       <div>
-        <label className="block mb-1 text-gray-400 font-medium" htmlFor={name}>
+        <label className="block mb-2 text-black font-bold" htmlFor={name}>
           {label} :
         </label>
         <div className="relative">
           <input
-            className="border rounded-sm w-full focus:outline-none focus:border-emerald-300 p-2 placeholder:select-none "
+            className="border w-full focus:outline-none focus:border-emerald-300 min-h-[50px] px-4 rounded-md placeholder:select-none font-semibold "
             placeholder={placeholder}
             type={handleTypeSelection(type)}
             id={name}
