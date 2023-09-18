@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useTheme } from "../hooks/useTheme";
 import classNames from "classnames";
 import { showToast } from "../utils/showToast";
+import { useSession } from "next-auth/react";
 
 function CreateNewFriend() {
   const { register, handleSubmit, formState } = useForm();
@@ -17,6 +18,12 @@ function CreateNewFriend() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { isLightTheme } = useTheme();
+
+  const { status } = useSession();
+
+  if (status === "unauthenticated") {
+    router.push("/login");
+  }
 
   const handleImage = (e) => {
     const file = e.target.files[0];
