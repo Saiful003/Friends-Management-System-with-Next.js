@@ -9,7 +9,7 @@ import customAxios from "../config/axios";
 import Button from "../components/Button";
 import classNames from "classnames";
 import { useTheme } from "../hooks/useTheme";
-import { unstable_getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 
 const Home = () => {
@@ -101,11 +101,7 @@ const Home = () => {
 };
 
 export async function getServerSideProps(context) {
-  const session = await unstable_getServerSession(
-    context.req,
-    context.res,
-    authOptions
-  );
+  const session = await getServerSession(context.req, context.res, authOptions);
 
   if (!session) {
     return {
