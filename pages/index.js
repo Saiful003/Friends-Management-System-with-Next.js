@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import Card from "../components/Card";
@@ -11,18 +10,33 @@ import classNames from "classnames";
 import { useTheme } from "../hooks/useTheme";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
+import CardSkeleton from "../components/CardSkeleton";
 
 const Home = () => {
   const [totalFriends, setTotalFriends] = useState([]);
   const [filteredBy, setFilteredBy] = useState("male");
+  const [loading, setLoading] = useState(false);
   const { isLightTheme } = useTheme();
 
   useEffect(() => {
+    // start with enable loading
+    setLoading(true);
     const getFriends = async () => {
-      const {
-        data: { message: friends },
-      } = await customAxios.get(`/?gender=${filteredBy}`);
-      setTotalFriends(friends);
+      try {
+        const {
+          data: { message: friends },
+        } = await customAxios.get(`/?gender=${filteredBy}`);
+        setTotalFriends(friends);
+        // disable loading after 500ms
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
+      } catch (err) {
+        // enable loading
+        setLoading(true);
+        // print error message
+        console.log(err.message);
+      }
     };
     getFriends();
   }, [filteredBy]);
@@ -57,26 +71,30 @@ const Home = () => {
           </Button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mt-4">
-          {totalFriends.map((singleFriend) => (
-            <Card
-              key={singleFriend._id}
-              name={singleFriend.name}
-              age={singleFriend.age}
-              id={singleFriend._id}
-              introduceBy={singleFriend.introduceBy}
-              profession={singleFriend.profession}
-              image={singleFriend.image}
-              gender={singleFriend.gender}
-              onClick={deleteFriend}
-            />
-          ))}
+          {loading ? (
+            <CardSkeleton cardCount={4} />
+          ) : (
+            totalFriends.map((singleFriend) => (
+              <Card
+                key={singleFriend._id}
+                name={singleFriend.name}
+                age={singleFriend.age}
+                id={singleFriend._id}
+                introduceBy={singleFriend.introduceBy}
+                profession={singleFriend.profession}
+                image={singleFriend.image}
+                gender={singleFriend.gender}
+                onClick={deleteFriend}
+              />
+            ))
+          )}
 
           <div
             className={`p-3  ${
               totalFriends.length && "flex items-center justify-center"
             } `}
           >
-            {!totalFriends.length && (
+            {totalFriends.length === 0 && !loading && (
               <div className="text-center">
                 <h2
                   className={classNames("text-xl font-medium mb-4", {

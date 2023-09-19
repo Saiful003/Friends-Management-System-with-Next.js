@@ -6,6 +6,7 @@ import store from "../store/store";
 import { SessionProvider } from "next-auth/react";
 import Layout from "../components/Layout";
 import { Toaster } from "react-hot-toast";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
