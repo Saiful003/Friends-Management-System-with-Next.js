@@ -4,8 +4,8 @@ import Skeleton from "react-loading-skeleton";
 function CardSkeleton({ cardCount = 1 }) {
   return Array(cardCount)
     .fill(0)
-    .map(() => (
-      <div className="rounded-md">
+    .map((_, index) => (
+      <div key={index} className="rounded-md">
         <div className="relative w-full h-[250px]">
           <Skeleton className="h-full" />
         </div>
