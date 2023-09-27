@@ -18,43 +18,6 @@ export const config = {
   },
 };
 
-// export default async function handler(req, res) {
-//   const session = await unstable_getServerSession(req, res, authOptions);
-//   const { method, body } = req;
-//   console.log(body);
-
-//   // connect to database
-//   await dbConnect();
-
-//   if (method === "POST") {
-//     try {
-//       const newFriend = new Friend({
-//         ...body,
-//         user_id: session?.user?.user_id,
-//       });
-//       await newFriend.save();
-
-//       responseHandler({
-//         res,
-//         message: "Successfully Create a Friend",
-//         code: 200,
-//       });
-//     } catch {
-//       responseHandler({
-//         res,
-//         message: "Friend Created Failed",
-//         code: 500,
-//       });
-//     }
-//   } else {
-//     responseHandler({
-//       res,
-//       message: "Incorrect HTTTP Request",
-//       code: 500,
-//     });
-//   }
-// }
-
 const handler = nc({
   onError: (err, req, res, next) => {
     res.status(500).end("Something broke!");

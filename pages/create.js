@@ -18,11 +18,11 @@ function CreateNewFriend() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { isLightTheme } = useTheme();
-
   const { status } = useSession();
 
   if (status === "unauthenticated") {
     router.push("/login");
+    return;
   }
 
   const handleImage = (e) => {

@@ -19,6 +19,11 @@ const userSchema = new Schema(
     email: { type: String, unique: true },
     password: { type: String, required: true },
     isVerifiedUser: { type: Boolean, required: true, default: false },
+    resetcode: {
+      type: String,
+      required: false,
+      default: "",
+    },
     otp: otpSchema,
   },
   { timestamps: true }

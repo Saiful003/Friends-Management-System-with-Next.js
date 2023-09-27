@@ -16,6 +16,7 @@ function Login() {
   const { errors } = formState;
   const { email, password } = errors;
   const [loading, setLoading] = useState(false);
+  const [userEmail, setUserEmail] = useState(null);
   const router = useRouter();
   const { isLightTheme } = useTheme();
 
@@ -23,6 +24,7 @@ function Login() {
   const onSubmit = async (data) => {
     // enable loading state
     setLoading(true);
+    setUserEmail(data.email);
 
     // // actual login process goes to here
     const result = await signIn("credentials", {
@@ -36,7 +38,6 @@ function Login() {
       setLoading(false);
       return;
     }
-
     // normal stuff.../
     setLoading(false);
     setError(null);
@@ -89,7 +90,16 @@ function Login() {
             </Link>
           </strong>
           please.
-        </p>
+        </p>{" "}
+        {error === "Authentication failed" && (
+          <strong>
+            <Link href={{ pathname: "/forget", query: { email: userEmail } }}>
+              <a className="hover:underline text-emerald-500">
+                Forget your passowrd?
+              </a>
+            </Link>
+          </strong>
+        )}
       </form>
     </Form>
   );
