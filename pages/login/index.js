@@ -91,15 +91,15 @@ function Login() {
           </strong>
           please.
         </p>{" "}
-        {error === "Authentication failed" && (
-          <strong>
-            <Link href={{ pathname: "/forget", query: { email: userEmail } }}>
-              <a className="hover:underline text-emerald-500">
-                Forget your passowrd?
-              </a>
-            </Link>
-          </strong>
-        )}
+        {/* {error === "Authentication failed" && ( */}
+        <strong>
+          <Link href={{ pathname: "/forget", query: { email: userEmail } }}>
+            <a className="hover:underline text-emerald-500">
+              Forget your passowrd?
+            </a>
+          </Link>
+        </strong>
+        {/* )} */}
       </form>
     </Form>
   );

@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import User from "../../../Model/userModel";
 import bcrypt from "bcrypt";
 import dbConnect from "../../../lib/dbConnect";
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -38,6 +39,9 @@ export const authOptions = {
         return null;
       },
     }),
+    // GoogleProvider({
+
+    // })
   ],
   callbacks: {
     async session({ session, user, token }) {
