@@ -14,8 +14,7 @@ const otpSchema = new Schema({
 
 const userSchema = new Schema(
   {
-    firstname: { type: String, required: true },
-    lastname: { type: String, required: true },
+    name: { type: String, required: true },
     email: { type: String, unique: true },
     password: { type: String, required: true },
     isVerifiedUser: { type: Boolean, required: true, default: false },

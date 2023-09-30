@@ -10,7 +10,8 @@ export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
-      async authorize(credentials, req) {
+
+      async authorize(credentials) {
         const { email, password } = credentials;
 
         // connect to database
@@ -35,8 +36,6 @@ export const authOptions = {
         if (user && isValidPassword) {
           return user;
         }
-        // Return null if user data could not be retrieved
-        return null;
       },
     }),
     // GoogleProvider({
@@ -44,17 +43,17 @@ export const authOptions = {
     // })
   ],
   callbacks: {
-    async session({ session, user, token }) {
+    async jwt({ token, user }) {
+      if (user) {
+        token.username = user.name;
+      }
+
+      return token;
+    },
+    async session({ session, token }) {
       session.user.name = token.username;
-      session.user.image = null;
       session.user.user_id = token.sub;
       return session;
-    },
-    async jwt({ token, user, account, profile, isNewUser }) {
-      if (user) {
-        token.username = user.firstname;
-      }
-      return token;
     },
   },
   secret: process.env.NEXTAUTH_SECRET,

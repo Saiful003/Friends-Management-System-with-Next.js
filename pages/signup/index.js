@@ -14,7 +14,7 @@ import { showToast } from "../../utils/showToast";
 function SignUp() {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
-  const { firstname, lastname, email, password, confirmPassword } = errors;
+  const { name, email, password, confirmPassword } = errors;
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [otpPriview, setOtpPreview] = useState(false);
@@ -63,23 +63,13 @@ function SignUp() {
 
       <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
         <Input
-          isError={firstname?.type === "required"}
-          errorMessage={firstname?.message}
+          isError={name?.type === "required"}
+          errorMessage={name?.message}
           type="text"
-          placeholder="Enter Your First Name"
-          label="First Name"
-          {...register("firstname", {
-            required: "Please enter your first name",
-          })}
-        />
-        <Input
-          isError={lastname?.type === "required"}
-          errorMessage={lastname?.message}
-          type="text"
-          placeholder="Enter Your Last Name"
-          label="Last Name"
-          {...register("lastname", {
-            required: "Please enter your last name",
+          placeholder="Enter Your Name"
+          label="Name"
+          {...register("name", {
+            required: "Please enter your name",
           })}
         />
         <Input

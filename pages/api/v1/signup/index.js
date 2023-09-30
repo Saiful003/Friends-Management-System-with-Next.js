@@ -12,12 +12,12 @@ export default async function handler(req, res) {
   await dbConnect();
 
   if (method === "POST") {
-    const { firstname, lastname, email, password, confirmPassword } = body;
+    const { name, email, password, confirmPassword } = body;
     const saltRound = 10;
 
     try {
       // ====> validation start
-      if (!firstname || !lastname || !email || !password || !confirmPassword) {
+      if (!name || !email || !password || !confirmPassword) {
         return responseHandler({
           res,
           message: "Please fill first required input fields!",
@@ -61,7 +61,7 @@ export default async function handler(req, res) {
         }
         await User.updateOne(
           { email },
-          { $set: { otp: { otpcode: hashedOtp }, firstname, lastname } }
+          { $set: { otp: { otpcode: hashedOtp }, name } }
         );
 
         // send otp to user email
@@ -87,8 +87,7 @@ export default async function handler(req, res) {
 
       // // save user
       const newUser = await User.create({
-        firstname,
-        lastname,
+        name,
         email,
         password: hashedPassword,
         otp: {

@@ -20,7 +20,7 @@ function Card({
   const { isLightTheme } = useTheme();
 
   return (
-    <div className="border rounded-md">
+    <div className="border overflow-hidden rounded-lg">
       <div className="relative w-full h-[250px] overflow-hidden">
         <Image
           src={image.url}

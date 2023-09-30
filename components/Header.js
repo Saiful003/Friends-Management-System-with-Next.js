@@ -36,7 +36,7 @@ function Header() {
           <div className="flex  flex-wrap items-center gap-4">
             {status === "authenticated" && (
               <>
-                <p className=" bg-emerald-500 text-white font-medium px-2 py-2 rounded-md">
+                <p className=" bg-emerald-500 text-white font-medium px-4 py-2 rounded-md">
                   {session?.user?.name}
                 </p>
                 <Link href="/create">

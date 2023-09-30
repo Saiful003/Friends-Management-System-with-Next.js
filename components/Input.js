@@ -1,9 +1,12 @@
 import { forwardRef, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import classNames from "classnames";
+import { useTheme } from "../hooks/useTheme";
 
 const Input = forwardRef(
   ({ label, name, type, placeholder, isError, errorMessage, ...rest }, ref) => {
     const [passwordType, setPasswordType] = useState(true);
+    const { isLightTheme } = useTheme();
 
     const handleTypeSelection = (inputType) => {
       if (inputType === "password") {
@@ -17,12 +20,22 @@ const Input = forwardRef(
 
     return (
       <div>
-        <label className="block mb-2 text-black font-bold" htmlFor={name}>
+        <label
+          className={classNames(
+            "block mb-2 font-bold",
+            { "text-black": isLightTheme },
+            { "text-white": !isLightTheme }
+          )}
+          htmlFor={name}
+        >
           {label} :
         </label>
         <div className="relative">
           <input
-            className="border w-full focus:outline-none focus:border-emerald-300 min-h-[50px] px-4 rounded-md placeholder:select-none font-semibold "
+            className={classNames(
+              "border w-full focus:outline-none bg-transparent focus:border-emerald-300 min-h-[50px] px-4 rounded-md placeholder:select-none font-semibold ",
+              { "text-white": !isLightTheme }
+            )}
             placeholder={placeholder}
             type={handleTypeSelection(type)}
             id={name}
