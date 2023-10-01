@@ -59,11 +59,7 @@ function Login() {
       </h2>
       {error && <Alert danger errorMessage={error} />}
       <div className="text-center">
-        <Button
-          onClick={() => signIn("google", { callbackUrl: "/" })}
-          type="submit"
-          fill
-        >
+        <Button onClick={() => signIn("google")} type="submit" fill>
           Sign in with Google
         </Button>
       </div>
