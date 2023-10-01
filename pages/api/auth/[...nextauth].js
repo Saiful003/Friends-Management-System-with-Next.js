@@ -10,8 +10,6 @@ export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
-      id: "username-login",
-
       async authorize(credentials) {
         try {
           const { email, password } = credentials;
@@ -23,9 +21,7 @@ export const authOptions = {
           if (!isValidPassword) return null;
           // If no error and we have user data, return it
           // Any object returned will be saved in `user` property of the JWT
-          if (user && isValidPassword && user.isVerifiedUser) {
-            return user;
-          }
+          return user;
         } catch (err) {
           return null;
         }
@@ -36,9 +32,7 @@ export const authOptions = {
 
     // })
   ],
-  pages: {
-    signIn: "/login",
-  },
+
   callbacks: {
     async jwt({ token, user }) {
       // we can store any kind of information inside this token
