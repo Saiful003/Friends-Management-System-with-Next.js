@@ -45,7 +45,7 @@ const handler = nc({
         image: {
           url,
         },
-        user_id: session?.user?.user_id,
+        userEmail: session?.user?.email,
       });
       await newFriend.save();
 

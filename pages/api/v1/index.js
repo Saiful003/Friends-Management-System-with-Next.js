@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   if (method === "GET") {
     try {
       const allFriends = await Friend.find({
-        user_id: session.user.user_id,
+        userEmail: session.user.email,
         gender: query.gender,
       });
 

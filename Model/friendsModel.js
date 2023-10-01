@@ -31,10 +31,9 @@ const FriendsSchema = new Schema(
         required: true,
       },
     },
-    user_id: {
-      // to grab only _id Field
-      type: Schema.Types.ObjectId,
-      ref: "User",
+    userEmail: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }

@@ -58,6 +58,15 @@ function Login() {
         <span className="text-emerald-500">Login </span> Please
       </h2>
       {error && <Alert danger errorMessage={error} />}
+      <div className="text-center">
+        <Button
+          onClick={() => signIn("google", { callbackUrl: "/" })}
+          type="submit"
+          fill
+        >
+          Sign in with Google
+        </Button>
+      </div>
       <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
         <Input
           isError={email?.type === "required"}

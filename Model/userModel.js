@@ -4,11 +4,11 @@ const { Schema } = mongoose;
 const otpSchema = new Schema({
   otpcode: {
     type: String,
-    required: true,
+    required: false,
   },
   expiresIn: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 
@@ -16,7 +16,7 @@ const userSchema = new Schema(
   {
     name: { type: String, required: true },
     email: { type: String, unique: true },
-    password: { type: String, required: true },
+    password: { type: String, required: false },
     isVerifiedUser: { type: Boolean, required: true, default: false },
     resetcode: {
       type: String,
