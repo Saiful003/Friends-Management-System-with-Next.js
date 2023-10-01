@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useTheme } from "../hooks/useTheme";
 import classNames from "classnames";
 import { showToast } from "../utils/showToast";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]";
 
 function CreateNewFriend() {

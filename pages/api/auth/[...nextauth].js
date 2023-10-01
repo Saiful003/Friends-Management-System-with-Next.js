@@ -9,6 +9,8 @@ export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
+      // id: "username-login",
+
       async authorize(credentials) {
         try {
           const { email, password } = credentials;

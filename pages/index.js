@@ -8,7 +8,7 @@ import customAxios from "../config/axios";
 import Button from "../components/Button";
 import classNames from "classnames";
 import { useTheme } from "../hooks/useTheme";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]";
 import CardSkeleton from "../components/CardSkeleton";
 
