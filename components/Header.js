@@ -15,7 +15,6 @@ function Header() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const { isLightTheme, handleSwitchTheme } = useTheme();
-  console.log(session);
 
   return (
     <header
