@@ -25,6 +25,7 @@ function Login() {
     // enable loading state
     setLoading(true);
     setUserEmail(data.email);
+    setError(null);
 
     // // actual login process goes to here
     const result = await signIn("credentials", {
@@ -34,13 +35,12 @@ function Login() {
 
     if (!result.ok) {
       // do your stuff...
-      setError(result.error);
+      setError("Authentication Failed!");
       setLoading(false);
       return;
     }
     // normal stuff.../
     setLoading(false);
-    setError(null);
     // show success toast
     showToast({
       text: "Login Successfull",

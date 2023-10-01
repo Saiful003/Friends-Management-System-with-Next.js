@@ -2,12 +2,10 @@ import Friend from "../../../../Model/friendsModel";
 import dbConnect from "../../../../lib/dbConnect";
 import { responseHandler } from "../../../../utils/responseHandler";
 import { authOptions } from "../../../../pages/api/auth/[...nextauth]";
-import { unstable_getServerSession } from "next-auth/next";
-import {
-  cloudinaryUpload,
-  cloudinaryTransformation,
-} from "../../../../config/cloudinary";
+import { getServerSession } from "next-auth/next";
+import { cloudinaryUpload } from "../../../../config/cloudinary";
 import { formatBufferTo64 } from "../../../../lib/dataUri";
+import { v2 as cloudinary } from "cloudinary";
 
 import nc from "next-connect";
 import upload from "../../../../config/multer";
@@ -28,7 +26,7 @@ const handler = nc({
 })
   .use(upload.single("file"))
   .post(async (req, res) => {
-    const session = await unstable_getServerSession(req, res, authOptions);
+    const session = await getServerSession(req, res, authOptions);
     const { body, file } = req;
 
     const file64 = formatBufferTo64(file);
@@ -39,6 +37,7 @@ const handler = nc({
       // file upload
 
       const { url } = await cloudinaryUpload(file64.content);
+      // Transform
 
       // create new friend
       const newFriend = new Friend({

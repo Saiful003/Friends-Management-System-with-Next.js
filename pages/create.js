@@ -7,7 +7,8 @@ import { useState } from "react";
 import { useTheme } from "../hooks/useTheme";
 import classNames from "classnames";
 import { showToast } from "../utils/showToast";
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]";
 
 function CreateNewFriend() {
   const { register, handleSubmit, formState } = useForm();
@@ -18,12 +19,6 @@ function CreateNewFriend() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { isLightTheme } = useTheme();
-  const { status } = useSession();
-
-  if (status === "unauthenticated") {
-    router.push("/login");
-    return;
-  }
 
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -129,6 +124,23 @@ function CreateNewFriend() {
       </form>
     </Form>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 }
 
 export default CreateNewFriend;
