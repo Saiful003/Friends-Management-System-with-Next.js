@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import User from "../../../Model/userModel";
 import bcrypt from "bcrypt";
 import GoogleProvider from "next-auth/providers/google";
+import dbConnect from "../../../lib/dbConnect";
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -14,6 +15,7 @@ export const authOptions = {
       async authorize(credentials) {
         try {
           const { email, password } = credentials;
+          await dbConnect();
           const user = await User.findOne({ email });
           if (!user) return null;
           if (user && !user.isVerifiedUser) return null;
