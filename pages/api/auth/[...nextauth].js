@@ -9,7 +9,7 @@ export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
-      // id: "username-login",
+      id: "username-login",
 
       async authorize(credentials) {
         try {
@@ -29,10 +29,14 @@ export const authOptions = {
         }
       },
     }),
+
     // GoogleProvider({
 
     // })
   ],
+  pages: {
+    signIn: "/login",
+  },
   callbacks: {
     async jwt({ token, user }) {
       // we can store any kind of information inside this token

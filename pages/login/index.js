@@ -28,7 +28,7 @@ function Login() {
     setError(null);
 
     // // actual login process goes to here
-    const result = await signIn("credentials", {
+    const result = await signIn("username-login", {
       ...data,
       redirect: false,
     });
