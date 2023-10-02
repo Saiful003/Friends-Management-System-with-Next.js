@@ -60,8 +60,10 @@ function Login() {
       {error && <Alert danger errorMessage={error} />}
       <div className="text-center">
         <Button
-          onClick={async () => {
-            signIn("google", { callbackUrl: `${process.env.SITE_URL}/` });
+          onClick={() => {
+            signIn("google", {
+              callbackUrl: "https://friends-management.vercel.app/",
+            });
           }}
           type="submit"
           fill
