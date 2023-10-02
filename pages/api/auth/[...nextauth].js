@@ -33,6 +33,9 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
+  pages: {
+    signIn: "/login",
+  },
   // callbacks to more control
   callbacks: {
     async signIn({ user, account }) {
